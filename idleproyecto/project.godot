@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="IdleProyecto"
+run/main_scene="res://scenes/gui.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=3120
+window/size/window_width_override=360
+window/size/window_height_override=640
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 
