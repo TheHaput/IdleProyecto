@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://3ukvahbo8hxa"]
+
+[ext_resource type="Script" path="res://scripts/ConveyorBelt.gd" id="1_63gp6"]
+[ext_resource type="Texture2D" uid="uid://dncnktx4bwvg1" path="res://assets/sprites/Conveyor 22222.png" id="3_k0vku"]
+
+[node name="Conveyor" type="Node2D"]
+script = ExtResource("1_63gp6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(803.5, 2359.38)
+scale = Vector2(29.97, 4.0925)
+texture = ExtResource("3_k0vku")
