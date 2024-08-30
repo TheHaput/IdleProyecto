@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ResourceData" load_steps=2 format=3 uid="uid://um3r4b6pulml"]
+
+[ext_resource type="Script" path="res://scripts/ResourceData.gd" id="1_laifh"]
+
+[resource]
+script = ExtResource("1_laifh")
+name = "Copper"
+value = 5

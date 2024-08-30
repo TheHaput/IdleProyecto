@@ -22,10 +22,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 120
 text = "Money: 0"
 
-[node name="OreLabel" type="Label" parent="VBoxContainer"]
+[node name="IronLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 120
-text = "Ore: 0
+text = "Iron: 0
+"
+
+[node name="CopperLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+text = "Copper: 0
 "
 
 [node name="Timer" type="Timer" parent="."]
@@ -43,5 +49,5 @@ theme_override_font_sizes/font_size = 150
 text = "SELL"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer" to="VBoxContainer/OreLabel" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="VBoxContainer/IronLabel" method="_on_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

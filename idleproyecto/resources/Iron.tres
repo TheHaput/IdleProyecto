@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ResourceData" load_steps=2 format=3 uid="uid://oaja5cm7biir"]
+
+[ext_resource type="Script" path="res://scripts/ResourceData.gd" id="1_vpj5w"]
+
+[resource]
+script = ExtResource("1_vpj5w")
+name = "Iron"
+value = 1
