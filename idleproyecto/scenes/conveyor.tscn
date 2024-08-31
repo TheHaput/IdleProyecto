@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://3ukvahbo8hxa"]
+[gd_scene load_steps=5 format=3 uid="uid://df4hmpimw53v4"]
 
 [ext_resource type="Script" path="res://scripts/ConveyorBelt.gd" id="1_63gp6"]
+[ext_resource type="Shader" path="res://assets/shaders/conveyorAnimation.gdshader" id="2_x4rgq"]
 [ext_resource type="Texture2D" uid="uid://dncnktx4bwvg1" path="res://assets/sprites/Conveyor 22222.png" id="3_k0vku"]
 
-[node name="Conveyor" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cyh4c"]
+shader = ExtResource("2_x4rgq")
+shader_parameter/scroll_speed = 0.5
+shader_parameter/texture_scale = 325.0
+
+[node name="Conveyor" type="Sprite2D"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_cyh4c")
+position = Vector2(1072.25, 147)
+scale = Vector2(21.495, 3)
+texture = ExtResource("3_k0vku")
 script = ExtResource("1_63gp6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(803.5, 2359.38)
-scale = Vector2(29.97, 4.0925)
-texture = ExtResource("3_k0vku")
+[node name="ItemContainer" type="Node2D" parent="."]
+position = Vector2(-49.6362, -1.66667)

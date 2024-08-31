@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhn00l5tiycub"]
+
+[ext_resource type="Script" path="res://scripts/MainGameLoop.gd" id="1_e3dx5"]
+[ext_resource type="PackedScene" uid="uid://dwuqi8bn3vv5c" path="res://scenes/gui.tscn" id="1_ofy2d"]
+[ext_resource type="PackedScene" uid="uid://df4hmpimw53v4" path="res://scenes/conveyor.tscn" id="2_43lhq"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_e3dx5")
+
+[node name="GUI" parent="." instance=ExtResource("1_ofy2d")]
+
+[node name="Conveyor" parent="." instance=ExtResource("2_43lhq")]
+position = Vector2(899, 2076)
+
+[node name="Conveyor2" parent="." instance=ExtResource("2_43lhq")]
+position = Vector2(903, 1694)
+
+[node name="Conveyor3" parent="." instance=ExtResource("2_43lhq")]
+position = Vector2(903.25, 1326)
+
+[node name="Conveyor4" parent="." instance=ExtResource("2_43lhq")]
+position = Vector2(907.25, 944)
