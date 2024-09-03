@@ -1,31 +1,45 @@
 extends Control
 
+# Amounts
 var copperAmount := 0
-
+var ironAmount := 0
 var money := 0
 
+# Labels
 var moneyLabel
+var ironLabel
+var copperLabel
 
-var oreLabel 
-
+# Resources
+var copperResource: ResourceData
+var ironResource: ResourceData
 
 func _ready():
+	copperResource = preload("res://resources/Copper.tres")
+	ironResource = preload("res://resources/Iron.tres")
+	print_debug("Iron and copper values: " + str(ironResource.value) + " " + str(copperResource.value))
+	
+
 	moneyLabel = $VBoxContainer/MoneyLabel
-	oreLabel = $VBoxContainer/OreLabel
+	ironLabel = $VBoxContainer/IronLabel
+	copperLabel = $VBoxContainer/CopperLabel
 
 func _on_timer_timeout():
 	copperAmount += 1
-	updateOreLabel()
+	ironAmount += 2
+	updateLabels()
 
 func _on_button_pressed():
 	sell()
 	## int to string 
-	moneyLabel.text = "Money: %d" %money 
+	moneyLabel.text = "Money: %d" % money
 
 func sell():
-	money += copperAmount * 3
+	money += copperAmount * copperResource.value + ironAmount * ironResource.value
 	copperAmount = 0
-	updateOreLabel()
+	ironAmount = 0
+	updateLabels()
 
-func updateOreLabel():
-	oreLabel.text ="Ore: %d" %copperAmount
+func updateLabels():
+	ironLabel.text = "Iron: %d, total value: %d" % [ironAmount, ironAmount * ironResource.value]
+	copperLabel.text = "Copper: %d, total value: %d" % [copperAmount, copperAmount * copperResource.value]

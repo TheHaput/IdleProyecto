@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceData" load_steps=3 format=3 uid="uid://oaja5cm7biir"]
+
+[ext_resource type="Script" path="res://scripts/ResourceData.gd" id="1_vpj5w"]
+[ext_resource type="Texture2D" uid="uid://dikst82eckk55" path="res://assets/sprites/ironOre.png" id="2_gdsh1"]
+
+[resource]
+script = ExtResource("1_vpj5w")
+name = "Iron"
+value = 1
+sprite = ExtResource("2_gdsh1")
