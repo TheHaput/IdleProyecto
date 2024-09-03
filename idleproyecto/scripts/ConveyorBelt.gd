@@ -39,14 +39,6 @@ func add_item(item: Item):
 	item_sprites.append(sprite)
 	add_child(sprite)
 
-func get_item() -> Item:
-	# Remove the sprite and return the item data
-	if items.size() > 0:
-		item_sprites.pop_front().queue_free()
-		return items.pop_front()
-
-	return null
-
 func move_items():
 	var indices_to_remove = []
 	
