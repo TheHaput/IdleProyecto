@@ -9,5 +9,7 @@ script = ExtResource("1_e3dx5")
 
 [node name="GUI" parent="." instance=ExtResource("1_ofy2d")]
 
-[node name="Conveyor" parent="." instance=ExtResource("2_43lhq")]
+[node name="Conveyor" parent="." groups=["Conveyors"] instance=ExtResource("2_43lhq")]
 position = Vector2(9, 106)
+
+[connection signal="sell_item" from="Conveyor" to="." method="_on_conveyor_sell_item"]
