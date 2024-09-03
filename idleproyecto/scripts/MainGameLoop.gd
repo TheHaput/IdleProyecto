@@ -11,7 +11,7 @@ func _ready():
 		if "Conveyor" in child.name:
 			conveyor_nodes.append(child)
 
-	iron_resource = preload("res://resources/Iron.tres")
+	iron_resource = preload("res://resources/IronResource.tres")
 	copper_resource = preload("res://resources/Copper.tres")
 	
 	# Llamar a la función add_item en el Conveyor nada mas carga la escena
@@ -25,6 +25,7 @@ func _ready():
 	timer.start()
 		
 func _on_timer_timeout():
+	print_debug("Timer timeout")
 	# Llamar a add_item repetidamente
 	for i in range(conveyor_nodes.size()):
 		var conveyor = conveyor_nodes[i]

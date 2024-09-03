@@ -13,4 +13,5 @@ func interact_with_conveyor(conveyor) -> void:
 	var item = conveyor.get_item()  # Get the item from the conveyor
 	if item:
 		var new_item = process_item(item)
-		conveyor.add_item(new_item)  # Place the transformed item back on the conveyor
+		print_debug("Item processed")
+		#conveyor.add_item(new_item)  # Place the transformed item back on the conveyor

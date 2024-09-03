@@ -1,50 +1,67 @@
-extends Sprite2D # Keep extending Sprite2D since it's still the root node
+# Conveyor.gd
+extends Node2D
 
-var slot_count = 20
-var slot_width = 25
-var conveyor_y_position = 0
-var slot_speed = 2
-var conveyor_slots = []
-var item_sprites = []
+var items := []
+var item_sprites := []
+var item_spawn_timer: Timer
 
-func _ready():
-	# Initialize conveyor slots and item sprites
-	var item_container = $ItemContainer # Reference to the ItemContainer Node2D
-	for i in range(slot_count):
-		conveyor_slots.append(null)
-		var sprite_instance = Sprite2D.new()
-		sprite_instance.visible = false # Initially invisible
-		item_sprites.append(sprite_instance)
-		item_container.add_child(sprite_instance) # Add to ItemContainer
+# Constants
+const ITEM_TYPE = preload("res://resources/IronResource.tres") # TODO This will be assigned by the main game loop
+const SPAWN_FREQUENCY = 1.5
+const MOVEMENT_SPEED = 10
 
-	start_conveyor()
+func ready():
+	# Create a timer 
+	item_spawn_timer = Timer.new()
+	item_spawn_timer.wait_time = SPAWN_FREQUENCY
+	item_spawn_timer.autostart = true
+	add_child(item_spawn_timer)
+	item_spawn_timer.connect("timeout", _on_item_spawn_timeout)
 
-func start_conveyor():
-	var timer = Timer.new()
-	timer.wait_time = slot_speed
-	timer.connect("timeout", _move_items)
-	add_child(timer)
-	timer.start()
+func _on_item_spawn_timeout():
+	var new_item = ITEM_TYPE.new()
+	add_item(new_item)
 
-func _move_items():
-	# Shift items to the right, from the last slot to the first
-	for i in range(slot_count - 1, 0, -1):
-		conveyor_slots[i] = conveyor_slots[i - 1]
-	conveyor_slots[0] = null # First slot gets new item or stays empty
-	update_display()
+func _process(delta):
+	move_items()
 
-func add_item(item: ResourceData):
-	conveyor_slots[0] = item # Place a new item in the first slot
-	update_display()
+func add_item(item: Item):
+	# Create a sprite for the item
+	var sprite = Sprite2D.new()
+	sprite.texture = item.sprite
+	sprite.position = Vector2.ZERO
+	sprite.scale = Vector2(0.125, 0.3)
+	
+	# Add the item to the queue and scene
+	items.append(item)
+	item_sprites.append(sprite)
+	add_child(sprite)
 
-func update_display():
-	# Update the item sprites based on conveyor_slots
-	for i in range(slot_count):
-		if conveyor_slots[i]:
-			item_sprites[i].texture = conveyor_slots[i].sprite
-			item_sprites[i].position = Vector2(i * slot_width, conveyor_y_position) # Adjust position based on slot index
-			item_sprites[i].scale = Vector2(0.125, 0.3)
-			print_debug(item_sprites[i].position)
-			item_sprites[i].visible = true
-		else:
-			item_sprites[i].visible = false
+func get_item() -> Item:
+	# Remove the sprite and return the item data
+	if items.size() > 0:
+		item_sprites.pop_front().queue_free()
+		return items.pop_front()
+
+	return null
+
+func move_items():
+	# Logic to move items along the conveyor
+	for sprite in item_sprites:
+		sprite.position.x += MOVEMENT_SPEED * get_process_delta_time()
+		check_machine_interaction(sprite)
+		check_end_of_line(sprite)
+		
+func check_machine_interaction(sprite: Sprite2D):
+	# Check if an item should interact with a machine along the conveyor
+	for machine in get_tree().get_nodes_in_group("Machines"):
+		if sprite.position.distance_to(machine.position) < 3:  # Example proximity check
+			machine.interact_with_conveyor(self)
+
+func check_end_of_line(sprite: Sprite2D):
+	# Logic for when an item reaches the end of the conveyor
+	if sprite.position.x > get_viewport_rect().size.x:
+		sprite.queue_free()  # Remove the sprite from the scene
+		item_sprites.erase(sprite)  # Remove the sprite from the array
+		# TODO sell or store in warehouse
+		
