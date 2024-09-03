@@ -1,9 +1,9 @@
 extends Sprite2D # Keep extending Sprite2D since it's still the root node
 
-var slot_count = 10
+var slot_count = 20
 var slot_width = 25
 var conveyor_y_position = 0
-var slot_speed = 2.4
+var slot_speed = 2
 var conveyor_slots = []
 var item_sprites = []
 

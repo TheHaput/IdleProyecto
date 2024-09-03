@@ -10,13 +10,11 @@ script = ExtResource("1_e3dx5")
 [node name="GUI" parent="." instance=ExtResource("1_ofy2d")]
 
 [node name="Conveyor" parent="." instance=ExtResource("2_43lhq")]
-position = Vector2(899, 2076)
+position = Vector2(0, 105.825)
+scale = Vector2(1.265, 0.225)
+offset = Vector2(49.9651, 0.333333)
 
 [node name="Conveyor2" parent="." instance=ExtResource("2_43lhq")]
-position = Vector2(903, 1694)
-
-[node name="Conveyor3" parent="." instance=ExtResource("2_43lhq")]
-position = Vector2(903.25, 1326)
-
-[node name="Conveyor4" parent="." instance=ExtResource("2_43lhq")]
-position = Vector2(907.25, 944)
+position = Vector2(0, 71)
+scale = Vector2(1.265, 0.225)
+offset = Vector2(49.9651, 1.93334)

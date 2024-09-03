@@ -19,7 +19,7 @@ func _ready():
 	
 	# Start timer that creates ores every X seconds
 	var timer = Timer.new()
-	timer.wait_time = 2.0  # Añadir un nuevo iron_resource cada 2 segundos
+	timer.wait_time = 1.5  # Añadir un nuevo iron_resource cada 2 segundos
 	timer.connect("timeout", _on_timer_timeout)
 	add_child(timer)
 	timer.start()
