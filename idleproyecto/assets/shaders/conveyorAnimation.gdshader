@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float scroll_speed = 1;
-uniform float texture_scale = 1.0;
+uniform float texture_scale = 125;
 
 void fragment() {
     // Calculate the UV offset to create the scrolling effect

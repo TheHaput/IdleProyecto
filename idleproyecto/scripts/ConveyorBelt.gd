@@ -35,7 +35,7 @@ func add_item(item: Item):
 	var sprite = Sprite2D.new()
 	sprite.texture = item.sprite
 	sprite.position = Vector2.ZERO
-	sprite.scale = Vector2(0.125, 0.4)
+	sprite.scale = Vector2(0.1, 0.1)
 	
 	# Add the item to the queue and scene
 	items.append(item)
@@ -79,7 +79,7 @@ func is_at_end_of_line(sprite: Sprite2D) -> bool:
 	
 	return false
 
-func is_for_storage():
+func is_for_storage() -> bool:
 	var random_number = randi_range(1, 100)
 	if random_number <= items_to_store_percentage:
 		return true

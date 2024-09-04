@@ -31,25 +31,3 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 120
 text = "Copper: 0
 "
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 124.0
-offset_right = 1446.09
-offset_bottom = 542.0
-scale = Vector2(0.045, 0.045)
-alignment = 1
-
-[node name="Button" type="Button" parent="VBoxContainer2"]
-texture_filter = 4
-clip_contents = true
-layout_mode = 2
-size_flags_vertical = 6
-size_flags_stretch_ratio = 0.0
-theme_override_font_sizes/font_size = 150
-text = "SELL"
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[connection signal="pressed" from="VBoxContainer2/Button" to="." method="_on_button_pressed"]

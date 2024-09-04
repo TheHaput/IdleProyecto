@@ -10,7 +10,16 @@ script = ExtResource("1_e3dx5")
 [node name="GUI" parent="." instance=ExtResource("1_ofy2d")]
 
 [node name="Conveyor" parent="." groups=["Conveyors"] instance=ExtResource("2_43lhq")]
-position = Vector2(9, 106)
+position = Vector2(0, 132.1)
+scale = Vector2(5.67, 1.74)
+offset = Vector2(0.01, -7.9)
+
+[node name="Conveyor2" parent="." groups=["Conveyors"] instance=ExtResource("2_43lhq")]
+position = Vector2(0, 98.7)
+scale = Vector2(5.69, 1.966)
+offset = Vector2(0.01, -7.9)
 
 [connection signal="sell_item" from="Conveyor" to="." method="_on_conveyor_sell_item"]
 [connection signal="store_item" from="Conveyor" to="." method="_on_conveyor_store_item"]
+[connection signal="sell_item" from="Conveyor2" to="." method="_on_conveyor_sell_item"]
+[connection signal="store_item" from="Conveyor2" to="." method="_on_conveyor_store_item"]

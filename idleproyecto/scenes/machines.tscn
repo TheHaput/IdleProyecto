@@ -7,6 +7,6 @@
 
 [node name="Machine1" type="Sprite2D" parent="." groups=["Machines"]]
 position = Vector2(50, 0)
-scale = Vector2(0.03, 0.15)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("1_ucx34")
 script = ExtResource("2_8lcxa")
