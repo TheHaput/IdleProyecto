@@ -13,3 +13,4 @@ script = ExtResource("1_e3dx5")
 position = Vector2(9, 106)
 
 [connection signal="sell_item" from="Conveyor" to="." method="_on_conveyor_sell_item"]
+[connection signal="store_item" from="Conveyor" to="." method="_on_conveyor_store_item"]
