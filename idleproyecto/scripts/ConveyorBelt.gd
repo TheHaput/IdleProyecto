@@ -3,10 +3,13 @@ extends Node2D
 
 # Maybe this will need to be connected through code in _ready() when conveyors are created through code
 signal sell_item(item: Item)
+signal store_item(item: Item)
 
 var items := []
 var item_sprites := []
 var item_spawn_timer: Timer
+var items_to_store_percentage: int = 20 # TODO do these through the UI later
+var is_storing: bool = true 
 
 # Constants
 const ITEM_TYPE = preload("res://resources/IronResource.tres") # TODO This will be assigned by the main game loop
@@ -39,25 +42,21 @@ func add_item(item: Item):
 	item_sprites.append(sprite)
 	add_child(sprite)
 
-func get_item() -> Item:
-	# Remove the sprite and return the item data
-	if items.size() > 0:
-		item_sprites.pop_front().queue_free()
-		return items.pop_front()
-
-	return null
-
 func move_items():
 	var indices_to_remove = []
 	
 	for i in range(item_sprites.size()):
 		var sprite = item_sprites[i]
 		sprite.position.x += MOVEMENT_SPEED * get_process_delta_time()
+		# TODO bring back later check_machine_interaction(item_sprites[sprite])
 		
 		if is_at_end_of_line(sprite):
-			emit_signal("sell_item", items[i])
+			if is_for_storage():
+				emit_signal("store_item", items[i])
+			else:
+				emit_signal("sell_item", items[i])
+			
 			indices_to_remove.append(i)
-		# TODO bring back later check_machine_interaction(item_sprites[sprite])
 	
 	# Remove items from the arrays after iteration
 	if indices_to_remove != null:
@@ -69,7 +68,7 @@ func move_items():
 func check_machine_interaction(sprite: Sprite2D):
 	# Check if an item should interact with a machine along the conveyor
 	for machine in get_tree().get_nodes_in_group("Machines"):
-		if sprite.position.distance_to(machine.position) < 3:  # Example proximity check
+		if sprite.position.distance_to(machine.position) < 3:
 			machine.interact_with_conveyor(self)
 
 func is_at_end_of_line(sprite: Sprite2D) -> bool:
@@ -79,3 +78,10 @@ func is_at_end_of_line(sprite: Sprite2D) -> bool:
 		return true
 	
 	return false
+
+func is_for_storage():
+	var random_number = randi_range(1, 100)
+	if random_number <= items_to_store_percentage:
+		return true
+	return false
+	
