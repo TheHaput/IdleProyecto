@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ddyrwdiqnjby1"]
 
 [ext_resource type="Script" path="res://scripts/Item.gd" id="1_n48fo"]
-[ext_resource type="Texture2D" uid="uid://dikst82eckk55" path="res://assets/sprites/ironOre.png" id="2_g3iij"]
+[ext_resource type="Texture2D" uid="uid://dvmfhwc5pajsv" path="res://assets/sprites/spriteIronOre.png" id="2_qbr5v"]
 
 [resource]
 script = ExtResource("1_n48fo")
 name = "Iron"
 value = 1
-sprite = ExtResource("2_g3iij")
+sprite = ExtResource("2_qbr5v")

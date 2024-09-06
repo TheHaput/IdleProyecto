@@ -35,7 +35,7 @@ func add_item(item: Item):
 	var sprite = Sprite2D.new()
 	sprite.texture = item.sprite
 	sprite.position = Vector2.ZERO
-	sprite.scale = Vector2(0.1, 0.1)
+	sprite.scale = Vector2(0.5, 0.6)
 	
 	# Add the item to the queue and scene
 	items.append(item)
