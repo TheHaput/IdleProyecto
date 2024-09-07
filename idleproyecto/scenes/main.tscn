@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhn00l5tiycub"]
+[gd_scene load_steps=5 format=3 uid="uid://dhn00l5tiycub"]
 
 [ext_resource type="Script" path="res://scripts/MainGameLoop.gd" id="1_e3dx5"]
 [ext_resource type="PackedScene" uid="uid://dwuqi8bn3vv5c" path="res://scenes/gui.tscn" id="1_ofy2d"]
 [ext_resource type="PackedScene" uid="uid://df4hmpimw53v4" path="res://scenes/conveyor.tscn" id="2_43lhq"]
+[ext_resource type="Script" path="res://scripts/FactoryManager.gd" id="4_60y8c"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_e3dx5")
 
 [node name="GUI" parent="." instance=ExtResource("1_ofy2d")]
 
-[node name="Conveyor" parent="." groups=["Conveyors"] instance=ExtResource("2_43lhq")]
-position = Vector2(9, 106)
+[node name="FactoryManager" type="Node" parent="."]
+script = ExtResource("4_60y8c")
 
-[connection signal="sell_item" from="Conveyor" to="." method="_on_conveyor_sell_item"]
-[connection signal="store_item" from="Conveyor" to="." method="_on_conveyor_store_item"]
+[node name="1" parent="FactoryManager" groups=["Conveyors"] instance=ExtResource("2_43lhq")]
+position = Vector2(9, 50)
+
+[connection signal="sell_item" from="FactoryManager/1" to="." method="_on_conveyor_sell_item"]
+[connection signal="store_item" from="FactoryManager/1" to="." method="_on_conveyor_store_item"]
